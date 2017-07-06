@@ -32,7 +32,8 @@ namespace Server
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
                     ipep = new IPEndPoint(ip, 8080);
-                    MessageBox.Show(ipep.ToString());
+                    txtIPAdd.Text = ip.ToString();
+                    txtPort.Text = "8080";
                     break;
                 }
             }
@@ -41,6 +42,7 @@ namespace Server
             XuLiClient = new Thread(new ThreadStart(ListenClient));
             XuLiClient.IsBackground = true;
             XuLiClient.Start();
+            richTextBox1.Text = "Server đã sẵn sàng!\n";
         }
         private void ListenClient()
         {
@@ -62,10 +64,31 @@ namespace Server
             while (true)
             {
                 byte[] buff = new byte[2048];
-                client.Receive(buff);
-                foreach (var sk in lstClient)
+                if (client.Connected == true)
                 {
-                    sk.Send(buff, buff.Length, SocketFlags.None);
+
+                    try
+                    {
+                        client.Receive(buff);
+                    }
+                    catch (Exception)
+                    {
+                        client.Close();
+                    }
+                    foreach (var sk in lstClient)
+                    {
+                        if (sk.Connected == true)
+                        {
+                            try
+                            {
+                                sk.Send(buff, buff.Length, SocketFlags.None);
+                            }
+                            catch (Exception)
+                            {
+                                sk.Close();
+                            }
+                        }
+                    }
                 }
             }
         }
