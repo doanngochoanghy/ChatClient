@@ -50,9 +50,20 @@ namespace Server
             while (true)
             {
                 Socket client = server.Accept();
+                byte[] buffer = new byte[2048];
+                client.Receive(buffer);
+                string name = Encoding.UTF8.GetString(buffer);
+                ListViewItem item = new ListViewItem(name);
+                item.SubItems.Add(client.RemoteEndPoint.ToString());
+                listView1.Items.Add(item);
+                richTextBox1.AppendText(item.SubItems[1].Text +"\n");
                 lstClient.Add(client);
-                richTextBox1.AppendText(client.RemoteEndPoint.ToString() + " đã được kết nối\n");
+                richTextBox1.AppendText(name + client.RemoteEndPoint.ToString() + " đã được kết nối\n");
                 richTextBox1.ScrollToCaret();
+                foreach (var i in lstClient)
+                {
+                    richTextBox1.AppendText(i.RemoteEndPoint.ToString() + "\n");
+                }
                 Thread ServiceClient = new Thread(PhucvuClient);
                 ServiceClient.IsBackground = true;
                 ServiceClient.Start(client);
@@ -66,7 +77,6 @@ namespace Server
                 byte[] buff = new byte[2048];
                 if (client.Connected == true)
                 {
-
                     try
                     {
                         client.Receive(buff);
@@ -74,6 +84,7 @@ namespace Server
                     catch (Exception)
                     {
                         client.Close();
+                        lstClient.Remove(client);
                     }
                     foreach (var sk in lstClient)
                     {
@@ -86,11 +97,22 @@ namespace Server
                             catch (Exception)
                             {
                                 sk.Close();
+                                lstClient.Remove(sk);
                             }
                         }
                     }
                 }
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmServer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

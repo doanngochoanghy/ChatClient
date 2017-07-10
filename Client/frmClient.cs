@@ -39,6 +39,8 @@ namespace Client
                     listen = new Thread(new ThreadStart(ListenServer));
                     listen.IsBackground = true;
                     listen.Start();
+                    SendMessage(txtName.Text);
+                    MessageBox.Show(client.LocalEndPoint.ToString());
                     MessageBox.Show("Kết nối thành công.");
                     AcceptButton = btnSend;
                     txtMessage.Focus();
@@ -68,7 +70,6 @@ namespace Client
                 }
                 catch (Exception)
                 {
-                    client.Disconnect(true);
                 }
             }
         }
@@ -99,6 +100,14 @@ namespace Client
         {
             btnConnect.Enabled = true;
             client.Disconnect(false);
+        }
+
+        private void btnDisconnect_Click_1(object sender, EventArgs e)
+        {
+            client.Shutdown(SocketShutdown.Both);
+            client.Disconnect(false) ;
+            btnConnect.Enabled = true;
+            txtConversation.Clear();
         }
     }
 }
