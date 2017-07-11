@@ -75,7 +75,7 @@ namespace Server
             while (true)
                 {
                 byte[] buff = new byte[2048];
-                if (!(client.Poll(1, SelectMode.SelectRead) && client.Available == 0))
+                if (client.Connected)
                     {
                     try
                         {
@@ -106,13 +106,6 @@ namespace Server
                         UpdateListClient();
                         break;
                         }
-                    }
-                else
-                    {
-                    client.Close();
-                    lvwClient.Items.Remove(itemclient);
-                    UpdateListClient();
-                    break;
                     }
                 }
             }

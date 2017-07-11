@@ -72,6 +72,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConversation.Location = new System.Drawing.Point(2, 44);
             this.txtConversation.Name = "txtConversation";
+            this.txtConversation.ReadOnly = true;
             this.txtConversation.Size = new System.Drawing.Size(503, 343);
             this.txtConversation.TabIndex = 2;
             this.txtConversation.Text = "";
