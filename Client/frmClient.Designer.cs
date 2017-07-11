@@ -39,6 +39,8 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnDisconnect = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.clmName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // txtMessage
@@ -80,6 +82,7 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(163, 20);
             this.txtIP.TabIndex = 3;
+            this.txtIP.Text = "192.168.10.30";
             // 
             // lblIPAdd
             // 
@@ -115,6 +118,7 @@
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(50, 20);
             this.txtPort.TabIndex = 7;
+            this.txtPort.Text = "8080";
             // 
             // lblName
             // 
@@ -131,6 +135,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(103, 20);
             this.txtName.TabIndex = 9;
+            this.txtName.Text = "hoangdn";
             // 
             // btnDisconnect
             // 
@@ -142,12 +147,29 @@
             this.btnDisconnect.UseVisualStyleBackColor = true;
             this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click_1);
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.clmName});
+            this.listView1.Location = new System.Drawing.Point(511, 75);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(76, 312);
+            this.listView1.TabIndex = 12;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // clmName
+            // 
+            this.clmName.Text = "Name";
+            this.clmName.Width = 71;
+            // 
             // frmClient
             // 
             this.AcceptButton = this.btnConnect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 446);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
@@ -180,6 +202,8 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnDisconnect;
-    }
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader clmName;
+        }
 }
 

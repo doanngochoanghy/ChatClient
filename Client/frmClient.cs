@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -62,13 +64,24 @@ namespace Client
             {
                 try
                 {
-                    byte[] buff = new byte[2048];
+                    byte[] buff = new byte[100000];
                     client.Receive(buff);
                     string message = Encoding.UTF8.GetString(buff);
+                    try
+                        {
+                        ListViewItem[] items=null;
+                        BinaryFormatter bf = new BinaryFormatter();
+                        items = (ListViewItem[])bf.Deserialize(new MemoryStream(buff));
+                        listView1.Items.Clear();
+                        listView1.Items.AddRange(items);
+                        }
+                    catch (Exception)
+                        {
+                        }
                     txtConversation.AppendText(message);
                     txtConversation.ScrollToCaret();
                 }
-                catch (Exception)
+                catch (Exception )
                 {
                 }
             }
@@ -96,16 +109,11 @@ namespace Client
             txtMessage.Focus();
         }
 
-        private void btnDisconnect_Click(object sender, EventArgs e)
-        {
-            btnConnect.Enabled = true;
-            client.Disconnect(false);
-        }
 
         private void btnDisconnect_Click_1(object sender, EventArgs e)
         {
             client.Shutdown(SocketShutdown.Both);
-            client.Disconnect(false) ;
+            client.Disconnect(false);
             btnConnect.Enabled = true;
             txtConversation.Clear();
         }
