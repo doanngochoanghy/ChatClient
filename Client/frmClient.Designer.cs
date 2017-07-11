@@ -49,15 +49,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMessage.Location = new System.Drawing.Point(2, 393);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(503, 50);
+            this.txtMessage.Size = new System.Drawing.Size(504, 50);
             this.txtMessage.TabIndex = 0;
             this.txtMessage.Text = "";
+            this.txtMessage.TextChanged += new System.EventHandler(this.txtMessage_TextChanged);
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.Enabled = false;
             this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSend.Location = new System.Drawing.Point(511, 393);
+            this.btnSend.Location = new System.Drawing.Point(512, 392);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 50);
             this.btnSend.TabIndex = 1;
@@ -73,7 +75,7 @@
             this.txtConversation.Location = new System.Drawing.Point(2, 44);
             this.txtConversation.Name = "txtConversation";
             this.txtConversation.ReadOnly = true;
-            this.txtConversation.Size = new System.Drawing.Size(503, 343);
+            this.txtConversation.Size = new System.Drawing.Size(504, 343);
             this.txtConversation.TabIndex = 2;
             this.txtConversation.Text = "";
             // 
@@ -83,7 +85,7 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(163, 20);
             this.txtIP.TabIndex = 3;
-            this.txtIP.Text = "192.168.10.30";
+            this.txtIP.Text = "192.168.1.13";
             // 
             // lblIPAdd
             // 
@@ -150,11 +152,13 @@
             // 
             // listView1
             // 
+            this.listView1.CheckBoxes = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.clmName});
-            this.listView1.Location = new System.Drawing.Point(511, 75);
+            this.listView1.Location = new System.Drawing.Point(512, 74);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(76, 312);
+            this.listView1.Size = new System.Drawing.Size(170, 312);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -169,7 +173,7 @@
             this.AcceptButton = this.btnConnect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 446);
+            this.ClientSize = new System.Drawing.Size(682, 446);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.lblName);
