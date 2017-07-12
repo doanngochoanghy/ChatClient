@@ -85,7 +85,6 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(163, 20);
             this.txtIP.TabIndex = 3;
-            this.txtIP.Text = "192.168.1.13";
             // 
             // lblIPAdd
             // 
@@ -138,7 +137,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(103, 20);
             this.txtName.TabIndex = 9;
-            this.txtName.Text = "hoangdn";
+            this.txtName.Text = "";
             // 
             // btnDisconnect
             // 
@@ -166,7 +165,7 @@
             // clmName
             // 
             this.clmName.Text = "Name";
-            this.clmName.Width = 71;
+            this.clmName.Width = 166;
             // 
             // frmClient
             // 

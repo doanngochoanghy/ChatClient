@@ -88,33 +88,15 @@ namespace Server
                         {
                             foreach (ListViewItem item in lvwClient.Items)
                             {
-                                if (item.SubItems[1].Text==message.MessageItem.SubItems[1].Text)
+                                if (item.SubItems[1].Text == message.MessageItem.SubItems[1].Text)
                                 {
                                     ((Socket)item.Tag).Send(Encoding.UTF8.GetBytes(message.MessageText));
                                 }
                             }
                         }
-                        catch 
+                        catch
                         {
                         }
-                        //foreach (ListViewItem i in lvwClient.Items)
-                        //{
-                        //    Socket sk = (Socket)i.Tag;
-                        //    if (sk.Connected == true)
-                        //    {
-                        //        try
-                        //        {
-                        //            sk.Send(buff, buff.Length, SocketFlags.None);
-                        //        }
-                        //        catch (Exception)
-                        //        {
-                        //            sk.Close();
-                        //            lvwClient.Items.Remove(i);
-                        //            UpdateListClient();
-                        //            break;
-                        //        }
-                        //    }
-                        //}
                     }
                     catch (Exception)
                     {
